@@ -1,0 +1,123 @@
+digraph diagrammeBords {
+
+    ranksep=18;
+    ratio=auto;
+
+    node [shape=rect]
+
+    piscine [shape=circle, label="Piscine de Salon"];
+
+
+    subgraph cluster02
+    {
+        label="Capteurs"
+
+        temp [label="Capteur de température"];
+        humidite [label="Capteur d'humidité"];
+        qualiteEau [label="Capteur de qualité de l'eau"];
+        profondeur [label="Capteur de profondeur du sol"];
+        detectionObjets [label="Capteurs de détection des objets au sol"];
+
+        capteurNiveauProduit [label="Capteur de niveau du produit nettoyant"];
+        
+        capteurNiveauEau [label="Capteur de niveau d'eau"]    
+    }
+
+    subgraph cluster02
+    {
+        label="Interface utilisateur"
+
+        indicationTemp [label="Indication de la température"];
+        indicationHumidite [label="Indication de l'humidité"];
+        indicationQualité [label="Indication de la qualité de l'eau"];
+        indicationNiveauEau [label="Indication du niveau de l'eau"];
+        indicationNiveauProduit [label="Indication du niveau de produit nettoyant"];
+
+        alerteQualité [label="Alerte de qualité de l'eau"];
+        alerteNiveauProduit [label="Alerte de niveau de produit nettoyant"];
+        alerteObjet [label="Alerte d'un objet sur le sol amovible"];
+
+        active [label="Activation de la piscine"];
+        potentiometreDescente [label="Potentiometre de réglage de la descente du sol"];
+        boutonsDeplacement [label="Boutons de déplacement manuel du sol"];
+
+        potentiometreJets [label="Potentiometre de réglage de l'intensité des jets"];
+        potentiometreEclairage [label="Potentiometre d'activation de l'éclairage"];
+        potentiometreTemperature [label="Potentiometre de réglage du chauffage"];
+        reglageAutomatisationNettoyage [label="Règlage de l'automatisation du Nettoyage de l'eau"];
+        activationNettoyage [label="Activation du Nettoyage de l'eau"];
+
+        nettoyageManuel [label="Activation du nettoyage manuel"];
+        boutonNettoyageManuel [label="Bouton de déplacement du sol pour nettoyage"];
+
+    }    
+
+    subgraph cluster03
+    {
+        label="Eclairage"
+        eclairage [label="Lampes d'éclairage"];
+    }
+
+    subgraph cluster01
+    {
+        label="Sol & Motorisation"
+
+        
+        permeabilitéSol [label="Perméabilité au sol"];
+        motorisationSol [label="Motorisation du sol"];
+    }
+
+    subgraph cluster04
+    {
+        label="Traitement de l'eau"
+        produitNettoyant [label="Injecteur de produits nettoyants"];
+        changementEau [label="Pompe de renouvellement de l'eau"];
+        valveEvacuation [label="Valve d'evacuation de l'eau"];
+        chauffage [label="Resistances de chauffage"];
+    }
+
+    temp -> piscine [label="température (°C)"];
+    humidite -> piscine [label="humidité (H.R)"];
+    qualiteEau -> piscine [label="qualité de l'eau (%)"];
+    profondeur -> piscine [label="profondeur (cm)"];
+    detectionObjets -> piscine [label="valeur binaire" style="dashed"];
+
+    capteurNiveauProduit -> piscine [label="niveau (%)"];
+    
+    capteurNiveauEau -> piscine [label="niveau (cm)"];
+
+    indicationTemp -> piscine [label="température (°C)"];
+    indicationHumidite -> piscine [label="humidité (H.R)"];
+    indicationQualité -> piscine [label="qualité de l'eau (%)"];
+    indicationNiveauEau -> piscine [label="profondeurv(cm)"];
+    indicationNiveauProduit -> piscine [label="niveau (%)"];
+
+    alerteQualité -> piscine [style="dashed"];
+    alerteNiveauProduit -> piscine [style="dashed"];
+    alerteObjet -> piscine [style="dashed"];
+
+    piscine -> active [style="dashed"];
+    potentiometreDescente -> piscine [label="pourcentage"];
+    boutonsDeplacement -> piscine [label="flots de données haut et bas"];
+
+    potentiometreJets -> piscine [label="pourcentage"];
+    potentiometreEclairage -> piscine [label="pourcentage"];
+    potentiometreTemperature -> piscine [label="temperature"];
+    piscine -> reglageAutomatisationNettoyage [label="pourcentage" style="dashed"];
+    piscine -> activationNettoyage [label="flot nettoyage" style="dashed"];
+
+    piscine -> nettoyageManuel [label="evenement nettoyage manuel" style="dashed"];
+
+    piscine -> boutonNettoyageManuel [label="evenement nettoyageHaut et nettoyageBas"];
+
+    piscine -> eclairage [label=""];
+
+    piscine -> permeabilitéSol [label="" style="dashed"];
+    piscine -> motorisationSol [label=""];
+
+    piscine -> produitNettoyant [label="" style="dashed"];
+    piscine -> changementEau [label="" style="dashed"];
+    piscine -> valveEvacuation [label="" style="dashed"];
+    piscine -> chauffage [label="température (°C)"];
+
+}
